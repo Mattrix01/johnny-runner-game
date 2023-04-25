@@ -1,5 +1,6 @@
 // importing exported classes to use in main game script.
 import { Player } from "./player.js";
+import { InputHandler } from "./input.js";
 
 // code runs after all assets in html are loaded.
 window.addEventListener("load", function () {
@@ -19,9 +20,13 @@ window.addEventListener("load", function () {
       // inside new player (this) keyword means this game object we are in (Game)
       // We can also use its draw method we created in player.js
       this.player = new Player(this);
+      // so we can use input.js in class
+      this.input = new InputHandler();
     }
     // update method will run for every animation frame and trigger all calculations that need to happen
-    update() {}
+    update() {
+      this.player.update();
+    }
     //draw method will draw all images and score etc.
     draw(context) {
       this.player.draw(context);
@@ -33,6 +38,9 @@ window.addEventListener("load", function () {
 
   // creating animation loop
   function animate() {
+    // clear canvas paint stop trail.
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    game.update();
     game.draw(ctx);
     requestAnimationFrame(animate);
   }
