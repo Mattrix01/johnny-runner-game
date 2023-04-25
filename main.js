@@ -1,5 +1,5 @@
 // importing exported classes to use in main game script.
-import { Player, player } from "./player.js";
+import { Player } from "./player.js";
 
 // code runs after all assets in html are loaded.
 window.addEventListener("load", function () {
@@ -17,7 +17,7 @@ window.addEventListener("load", function () {
       this.height = height;
       // because we imported player class we can use it here.
       // inside new player (this) keyword means this game object we are in (Game)
-      // We can also sue its draw method we created in player.js
+      // We can also use its draw method we created in player.js
       this.player = new Player(this);
     }
     // update method will run for every animation frame and trigger all calculations that need to happen
@@ -28,5 +28,13 @@ window.addEventListener("load", function () {
     }
   }
 
-  const game = new Game();
+  const game = new Game(canvas.width, canvas.height);
+  console.log(game);
+
+  // creating animation loop
+  function animate() {
+    game.draw(ctx);
+    requestAnimationFrame(animate);
+  }
+  animate();
 });
