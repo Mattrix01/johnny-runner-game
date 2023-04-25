@@ -3,6 +3,7 @@
 export class InputHandler {
   constructor() {
     // adding keys that are pressed down inot this array and removing ones being released.
+    // contains all currently active keys
     this.keys = [];
     // event listeners return auto generated event object which contains info about the event.
     // the property that holds the event is called 'key'

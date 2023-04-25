@@ -12,10 +12,11 @@ export class Player {
     // pointing to image element
     this.image = document.getElementById("player");
   }
-  // will mvoe it around absed on user input and cycle through sprite frames
-  update() {
-    // incrementing position of sprite horizontally.
-    // this.x++;
+  // will move it around based on user input and cycle through sprite frames
+  update(input) {
+    // for updating player class depending on keys pressed
+    if (input.includes("ArrowRight")) this.x++;
+    else if (input.includes("ArrowLeft")) this.x--;
   }
   // draw currently active frame, edit current co-ordinates.
   // needs context as argument to specify which canvas lement we want to draw on.

@@ -25,7 +25,8 @@ window.addEventListener("load", function () {
     }
     // update method will run for every animation frame and trigger all calculations that need to happen
     update() {
-      this.player.update();
+      // passing in list of active inputs to player update method so it can react to it
+      this.player.update(this.input.keys);
     }
     //draw method will draw all images and score etc.
     draw(context) {
