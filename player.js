@@ -9,14 +9,25 @@ export class Player {
     this.x = 0;
     // this.height on y co-ordinate to position on bottom of canvas.
     this.y = this.game.height - this.height;
+    // pointing to image element
+    this.image = document.getElementById("player");
   }
   // will mvoe it around absed on user input and cycle through sprite frames
   update() {}
   // draw currently active frame, edit current co-ordinates.
   // needs context as argument to specify which canvas lement we want to draw on.
   draw(context) {
-    context.fillStyle = "red";
-    context.fillRect(this.x, this.y, this.width, this.height);
-    context.drawImage();
+    // Passing areguments in draw image (image we wasnt to draw, source x,y,height,width of position on image we want to crop out, destination x, y, height and width where on canvas we want to draw that cropped out image)
+    context.drawImage(
+      this.image,
+      0,
+      0,
+      this.width,
+      this.height,
+      this.x,
+      this.y,
+      this.width,
+      this.height
+    );
   }
 }
