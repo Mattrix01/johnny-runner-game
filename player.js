@@ -11,12 +11,25 @@ export class Player {
     this.y = this.game.height - this.height;
     // pointing to image element
     this.image = document.getElementById("player");
+    this.speed = 0;
+    // its speed in pixels per frame
+    this.maxSpeed = 10;
   }
   // will move it around based on user input and cycle through sprite frames
   update(input) {
+    // horizontal movement for every frame
+    // increasing players horizontal x position by its current speed
+    this.x += this.speed;
+
     // for updating player class depending on keys pressed
-    if (input.includes("ArrowRight")) this.x++;
-    else if (input.includes("ArrowLeft")) this.x--;
+    if (input.includes("ArrowRight")) this.speed = this.maxSpeed;
+    else if (input.includes("ArrowLeft")) this.speed = -this.maxSpeed;
+    // if input array deosnt include arrow right or left, stop horizontal movement
+    else this.speed = 0;
+    // stop player from leaving canvas boundreis edge
+    if (this.x < 0) this.x = 0;
+    if (this.x > this.game.width - this.width)
+      this.x = this.game.width - this.width;
   }
   // draw currently active frame, edit current co-ordinates.
   // needs context as argument to specify which canvas lement we want to draw on.
