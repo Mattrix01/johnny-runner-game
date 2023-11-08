@@ -11,7 +11,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  /* so we cna see entire canvas if shrunk view */
+  /* so we can see entire canvas if shrunk view */
   max-width: 100%;
   max-height: 100%;
 }
