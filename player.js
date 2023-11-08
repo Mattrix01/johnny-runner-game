@@ -9,6 +9,8 @@ export class Player {
     this.x = 0;
     // this.height on y co-ordinate to position on bottom of canvas.
     this.y = this.game.height - this.height;
+    // vertical speed below
+    this.vy = 0;
     // pointing to image element
     this.image = document.getElementById("player");
     this.speed = 0;
@@ -30,6 +32,10 @@ export class Player {
     if (this.x < 0) this.x = 0;
     if (this.x > this.game.width - this.width)
       this.x = this.game.width - this.width;
+    // vertical movement
+    // for every animation frame add the current vertical velocity to players vertical y position
+    this.y += this.vy;
+    if (input.includes("ArrowUp") && this.onGround()) this.vy -= 10;
   }
   // draw currently active frame, edit current co-ordinates.
   // needs context as argument to specify which canvas lement we want to draw on.
@@ -46,5 +52,9 @@ export class Player {
       this.width,
       this.height
     );
+  }
+  // check if player is standing on ground or in air using small utility mehtod
+  onGround() {
+    return this.y >= this.game.height - this.height;
   }
 }
